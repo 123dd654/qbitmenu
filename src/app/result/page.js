@@ -5,8 +5,12 @@ import Your_basket from "@/components/result/Your_basket";
 import { useBag } from "@/context/BagContext";
 import Button from "@/components/common/Button";
 import { useRouter } from "next/navigation";
-import Lottie from "react-lottie-player";
 import resultAnimation from "/public/result.json";
+import dynamic from "next/dynamic";
+
+const Lottie = dynamic(() => import("react-lottie-player"), {
+  ssr: false,
+});
 
 export default function Result() {
   const { result } = useBag();

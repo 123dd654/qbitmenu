@@ -1,9 +1,14 @@
 "use client";
+
 import Button from "@/components/common/Button";
 import { useRouter } from "next/navigation";
-import Lottie from "react-lottie-player";
+import dynamic from "next/dynamic";
 import completeAnimation from "/public/complete.json";
 import { useBag } from "@/context/BagContext";
+
+const Lottie = dynamic(() => import("react-lottie-player"), {
+  ssr: false,
+});
 
 export default function Complete() {
   const router = useRouter();
