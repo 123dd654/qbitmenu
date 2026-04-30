@@ -8,7 +8,7 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 
 const server = express();
-const port = 80;
+const PORT = process.env.PORT || 3000;
 
 // HTTP 서버 생성
 const httpServer = http.createServer(server);
