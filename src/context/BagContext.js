@@ -71,7 +71,10 @@ export const BagProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const s = io("http://qbitmenu.com", { transports: ["websocket", "polling"] });
+    const s = io(window.location.origin, {
+      path: "/socket.io",
+      transports: ["websocket"],
+    });
     socketRef.current = s;
 
     s.on("connect", () => {
