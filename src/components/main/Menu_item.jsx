@@ -34,14 +34,13 @@ const MenuItem = ({ id, label, name, price, imageUrl }) => {
         <div className="menuItem_price">{price.toLocaleString()}원</div>
       </div>
       <div className="menuItem_image">
-        <Image
-          src={imageUrl}
-          alt={name}
-          width={80}
-          height={80}
-          quality={100}
-          priority
-        />
+      <Image
+        src={imageUrl}
+        alt={name}
+        width={80}
+        height={80}
+        loading="lazy"
+      />
       </div>
     </Link>
   );
