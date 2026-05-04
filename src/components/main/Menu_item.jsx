@@ -40,6 +40,7 @@ const MenuItem = ({ id, label, name, price, imageUrl }) => {
         width={80}
         height={80}
         loading="lazy"
+        unoptimized
       />
       </div>
     </Link>
