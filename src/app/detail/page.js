@@ -45,19 +45,24 @@ function DetailContent() {
   };
 
   const handleButtonClick = () => {
-    if (bag.items.some(bagItem => bagItem.id === itemId)) {
-      updateItem(itemId, {
-        id: itemId,
-        name: menuItem.name,
-        price: menuItem.price,
-        quantity,   // ✅ 수정 반영됨
-        options
-      });
-    } else {
-      addItem(menuItem, null, options, quantity); // ✅ 여기서 quantity 전달
-    }
-    router.push('/bag');
-  };
+  const existingItem = bag.items.find(
+    bagItem => bagItem.id === itemId && 
+    JSON.stringify(bagItem.options) === JSON.stringify(options)
+  );
+
+  if (existingItem) {
+    updateItem(itemId, options, {
+      id: itemId,
+      name: menuItem.name,
+      price: menuItem.price,
+      quantity,
+      options
+    });
+  } else {
+    addItem(menuItem, null, options, quantity);
+  }
+  router.push('/bag');
+};
 
   if (!menuItem) return <div>Loading...</div>;
   console.log(menuItem?.imageUrl);

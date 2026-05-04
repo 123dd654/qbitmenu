@@ -165,9 +165,15 @@ export const BagProvider = ({ children }) => {
     );
   };
 
-  const updateItem = (id, updatedItem) => {
-    updateWithItems((items) => items.map((it) => (it.id === id ? updatedItem : it)));
-  };
+const updateItem = (id, options, updatedItem) => {
+  updateWithItems((items) =>
+    items.map((it) =>
+      it.id === id && JSON.stringify(it.options) === JSON.stringify(options)
+        ? updatedItem
+        : it
+    )
+  );
+};
 
   const addItem = (menu, selectedFix, selectedOptions, quantity = 1) => {
     const options = [];
