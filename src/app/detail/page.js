@@ -60,6 +60,7 @@ function DetailContent() {
   };
 
   if (!menuItem) return <div>Loading...</div>;
+  console.log(menuItem?.imageUrl);
 
   return (
     <>

@@ -4,13 +4,14 @@ import PropTypes from "prop-types";
 import MenuItem from "./Menu_item";
 
 const Menu = React.forwardRef(({ title, items, isLast }, ref) => {
+   const visibleItems = items.slice(0, 6);
   return (
     <div className={`container ${isLast ? "last-menu" : ""}`} ref={ref}>
       <div className="menu">
         <h2 className="menu-title">{title}</h2>
         <div className="menu-items">
-          {items.map((item, index) => (
-            <MenuItem key={index} {...item} />
+           {visibleItems.map((item) => (
+            <MenuItem key={item.id ?? item.name} {...item} />
           ))}
         </div>
       </div>
