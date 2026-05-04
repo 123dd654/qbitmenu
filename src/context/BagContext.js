@@ -118,7 +118,6 @@ export const BagProvider = ({ children }) => {
     // ✅ 주문 완료 이벤트 수신
     s.on("orderPlaced", (orderData) => {
       setResult(orderData); // { myBag, otherBags }
-       finalizeOrder(); 
       router.push("/complete");
     });
 

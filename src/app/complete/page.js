@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react"
 import Button from "@/components/common/Button";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
@@ -12,6 +13,11 @@ const Lottie = dynamic(() => import("react-lottie-player"), {
 
 export default function Complete() {
   const router = useRouter();
+   const { finalizeOrder, result  } = useBag();
+
+   useEffect(() => {
+    finalizeOrder();
+  }, []);
 
   // ✅ 메뉴 보기 눌렀을 때 리셋 + 이동
   const handleMenuPage = () => {
@@ -20,6 +26,7 @@ export default function Complete() {
 
   // ✅ 주문내역 보기 눌렀을 때 리셋 + 이동
   const handleResultPage = () => {
+    console.log("result 확인:", result); // ✅ 추가
     router.push("/result");
   };
 

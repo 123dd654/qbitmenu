@@ -10,13 +10,9 @@ const Menu = React.forwardRef(({ title, items, isLast }, ref) => {
       <div className="menu">
         <h2 className="menu-title">{title}</h2>
         <div className="menu-items">
-           {visibleItems.map((item, index) => (
-              <MenuItem
-                key={item.id ?? item.name}
-                index={index}
-                {...item}
-              />
-            ))}
+           {visibleItems.map((item) => (
+            <MenuItem key={item.id ?? item.name} {...item} />
+          ))}
         </div>
       </div>
     </div>

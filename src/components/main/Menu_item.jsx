@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Image from "next/image";
 import Link from "next/link";
 
-const MenuItem = ({ id, label, name, price, imageUrl, index  }) => {
+const MenuItem = ({ id, label, name, price, imageUrl  }) => {
   const displayLabel = label === "soldout" ? "품절" : label;
 
   //라벨이 soldout 일시 클릭이 안 되도록 설정

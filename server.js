@@ -42,22 +42,19 @@ app.prepare().then(() => {
     });
 
     socket.on('placeOrder', () => {
-      const orderSnapshot = {
-        myBag: clientBags[socket.id] || { items: [] },
-        otherBags: Object.entries(clientBags)
-          .filter(([id]) => id !== socket.id)
-          .map(([_, bag]) => bag),
-      };
+      // 각 클라이언트한테 본인 기준으로 따로 보내기
+      Object.keys(connectedClients).forEach((id) => {
+        const myBag = clientBags[id] || { items: [] };
+        const otherBags = Object.entries(clientBags)
+          .filter(([otherId]) => otherId !== id)
+          .map(([_, bag]) => bag);
 
-      io.emit('orderPlaced', orderSnapshot);
+        connectedClients[id].emit('orderPlaced', { myBag, otherBags });
+      });
 
+      // 장바구니 비우기
       Object.keys(clientBags).forEach((id) => {
-        clientBags[id] = {
-          ...clientBags[id],
-          items: [],
-          totalItems: 0,
-          totalPrice: 0,
-        };
+        clientBags[id] = { ...clientBags[id], items: [], totalItems: 0, totalPrice: 0 };
       });
 
       io.emit('otherBags', Object.values(clientBags));
