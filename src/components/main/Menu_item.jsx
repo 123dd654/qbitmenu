@@ -38,7 +38,7 @@ const MenuItem = ({ id, label, name, price, imageUrl  }) => {
           src={imageUrl}
           width={80}
           height={80}
-          quality={100}
+          quality={75}
         />
       </div>
     </Link>
