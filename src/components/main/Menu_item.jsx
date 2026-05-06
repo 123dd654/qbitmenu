@@ -1,7 +1,6 @@
 // components/main/MenuItem.jsx
 import React from "react";
 import PropTypes from "prop-types";
-import Image from "next/image";
 import Link from "next/link";
 
 const MenuItem = ({ id, label, name, price, imageUrl  }) => {
@@ -34,11 +33,11 @@ const MenuItem = ({ id, label, name, price, imageUrl  }) => {
         <div className="menuItem_price">{price.toLocaleString()}원</div>
       </div>
       <div className="menuItem_image">
-       <Image
+        <img
           src={imageUrl}
           width={80}
           height={80}
-          quality={75}
+          alt={name}
         />
       </div>
     </Link>
